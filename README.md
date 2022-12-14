@@ -4,6 +4,20 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+## About the Example Application
+
+It's a todo system using Red Hat Quarkus and Apache Camel.
+
+Features:
+
+1. Save a Todo task
+2. List a Todo Task
+3. Complete a Todo Task
+4. Delete a Todo Task
+5. When a Task is created, completed or deleted, the app notify the log system
+6. When a Task is created, completed or deleted, the app send an email
+7. When a Task is completed or deleted, the app create an audit report to this action
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:

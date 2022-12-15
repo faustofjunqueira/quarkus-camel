@@ -17,6 +17,35 @@ Features:
 5. When a Task is created, completed or deleted, the app notify the log system
 6. When a Task is created, completed or deleted, the app send an email
 7. When a Task is completed or deleted, the app create an audit report to this action
+8. Authetication with keycloak for example.
+9. To Create, Delete or completed, need authenticated, but, to list, don't need.
+10. In list method I can pass a filter, to list just my tasks
+11. Detail all audit about one todo task
+
+### Modeling
+
+Table: **Task**
+
+| Field       | Data type           |
+|-------------|---------------------|
+| id          | pk(uuid)            |
+| ownerId     | uuid                |
+ | title       | varchar(64)         |
+| description | varchar(256)        |
+| completedAt | nullable(timestamp) | 
+| createdAt   | timestamp           |
+| deletedAt   | nullable(timestamp) |
+
+Table: **Audit**
+
+| Field        | Data type                                 |
+|--------------|-------------------------------------------|
+| id           | pk(id)                                    | 
+| userId       | uuid                                      |
+| taskId       | uuid                                      |
+| auditedAt    | timestamp                                 |
+| beforeStatus | nullable(CREATED or COMPLETED or DELETED) |
+| afterStatus  | nullable(CREATED or COMPLETED or DELETED) |
 
 ## Running the application in dev mode
 

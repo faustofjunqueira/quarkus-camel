@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  postgres:
+  db:
     container_name: postgres_container
     image: postgres
     environment:
@@ -10,10 +10,43 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-quarkus-camel}
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - db:/data/postgres
     ports:
       - "5432:5432"
     restart: unless-stopped
 
+  keycloak_db:
+    container_name: postgres__keycloack_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-keycloak}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-keycloak}
+      PGDATA: /data/postgres
+    volumes:
+      - keycloak_db:/data/postgres
+    restart: unless-stopped
+
+  keycloak:
+      image: quay.io/keycloak/keycloak:20.0.2
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: keycloak_db
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_SCHEMA: public
+        DB_PASSWORD: changeme
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+        #JDBC_PARAMS: "ssl=true"
+      command:
+        - start-dev
+      ports:
+        - 8180:8080
+      restart: unless-stopped
+      depends_on:
+        - keycloak_db
+
 volumes:
-  postgres:
+  db:
+  keycloak_db:

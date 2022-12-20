@@ -1,4 +1,4 @@
-package com.github.faustofjunqueira.quarkuscamel.application.adapter.panache;
+package com.github.faustofjunqueira.quarkuscamel.application.adapter.database;
 
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskCreateDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @RequiredArgsConstructor
 @ApplicationScoped
-public class PanacheTaskRepository implements TaskRepository {
+public class TaskRepositoryAdapter implements TaskRepository {
     @Override
     public Task create(TaskCreateDto dto, String ownerId) {
         return null;

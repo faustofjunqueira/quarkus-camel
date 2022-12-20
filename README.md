@@ -4,6 +4,35 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+## Items Configurateds
+
+- *Hexagonal Architecture*
+- **Unit Test**: `mvn test`
+- **Integration Test**: `mvn verify -DskipITs=false`
+- *Error Handler*
+  - *Authentication*
+  - *Authorization*
+  - *Business Error*
+  - *Generic Error*
+- *API HATEOAS*
+- **Authorization with RBAC**: Não é o objetivo garantir a autenticação, somente a authorizacao. Configuração no docker compose, após, importar o arquivo `realm-export.json` contido na raiz do projeto. Para gerar o token, deve criar um usuario e atribuir as roles contidas no client `quarkus-camel`. A autenticação deve ser efetuada através do `quarkus-camel-frontend`.
+- *Hibernate with Panache*
+- *Flyway*
+- *Healthcheck* ( Database, APIs, Thrird Party e Application) - K8S
+- *Camel*
+- *Log*
+- *Splunk*
+- *New Relic*
+- *Docker com Native Build*
+- *CI*
+- *CD*
+- Open API
+
+Pendente:
+
+- Teste de Integração com o Keycloak (https://quarkus.io/guides/security-openid-connect#integration-testing-keycloak-devservices)
+- Autenticacao Camel com teste
+
 ## About the Example Application
 
 It's a todo system using Red Hat Quarkus and Apache Camel.

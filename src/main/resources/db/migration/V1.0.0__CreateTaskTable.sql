@@ -9,3 +9,6 @@ CREATE TABLE Task (
 );
 
 CREATE INDEX task_ownerid ON Task(ownerId);
+CREATE INDEX task_softdelete ON Task(deletedAt);
+
+

@@ -1,17 +1,20 @@
 package com.github.faustofjunqueira.quarkuscamel.core.domain.model;
 
-import lombok.Value;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Value
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
-    UUID id;
-    UUID ownerId;
-    String title;
-    String description;
-    ZonedDateTime completedAt;
-    ZonedDateTime createdAt;
-    ZonedDateTime deletedAt;
+    private UUID id;
+    private UUID ownerId;
+    private String title;
+    private String description;
+    private ZonedDateTime completedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime deletedAt;
 }

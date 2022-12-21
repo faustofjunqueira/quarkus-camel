@@ -35,19 +35,19 @@ public class TaskResourceTest {
     @TestHTTPEndpoint(TaskResource.class)
     URL url;
 
-    private final Task stubTask = new Task(
-                UUID.randomUUID(),
-                UUID.randomUUID(),
-                "Dummy Title",
-                "Foo Description",
-                ZonedDateTime.now(),
-                ZonedDateTime.now(),
-                null
-        );
+    private final Task stubTask = Task.builder()
+            .id(UUID.randomUUID())
+            .ownerId(UUID.randomUUID())
+            .title("Dummy Title")
+            .description("Foo Description")
+            .completedAt(ZonedDateTime.now())
+            .createdAt(ZonedDateTime.now())
+            .deletedAt(null)
+            .build();
 
     @BeforeAll
     public void setup() {
-        Mockito.when(taskService.create(Mockito.any(), Mockito.anyString())).thenReturn(stubTask);
+        Mockito.when(taskService.create(Mockito.any(), Mockito.any())).thenReturn(stubTask);
     }
 
     @Test

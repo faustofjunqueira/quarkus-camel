@@ -9,7 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 @RequiredArgsConstructor
 @Slf4j
-public class FlywaySvc {
+public class FlywayMigration {
 
     private final Flyway flyway;
 

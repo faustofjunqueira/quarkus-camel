@@ -5,15 +5,18 @@ import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.model.Task;
 
 import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface TaskRepository {
 
-    Task create(TaskCreateDto dto, String ownerId);
+    Task create(TaskCreateDto dto, UUID ownerId);
 
-    Task delete(String taskId);
+    void delete(UUID taskId);
 
-    Task complete(String taskId);
+    Optional<Task> complete(UUID taskId);
 
     Collection<Task> list(TaskFilterDto filter);
 
+    Optional<Task> getById(UUID taskId);
 }

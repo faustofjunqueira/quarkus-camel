@@ -1,11 +1,11 @@
 package com.github.faustofjunqueira.quarkuscamel.core.domain.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Data
-public class TaskFilterDto {
-    private String userId;
+public class TaskFilterDto extends Paging {
+    private UUID userId;
 
 }

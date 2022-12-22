@@ -21,6 +21,7 @@ import java.util.UUID;
 @Table(name = "Task")
 @Where(clause = "deletedAt is null")
 @SQLDelete(sql = "UPDATE Task set deletedat = now() where id = ?", check = ResultCheckStyle.COUNT)
+@NamedQuery(name="Task.filter", query = "from TaskEntity where ownerId = :ownerId or :ownerId = null")
 public class TaskEntity extends PanacheEntityBase {
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")

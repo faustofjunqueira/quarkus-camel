@@ -17,7 +17,8 @@ If you want to learn more about Quarkus, please visit its website: https://quark
     - Em dev e test, retornar o stacktrace, em prod NÃO
   - *Validation Error - 400 - code: 1*
   - *NotFound - 404*
-- *API HATEOAS and RestFull API*
+- *API RestFull API*
+- *Compressão de HTTP*
 - **Authorization with RBAC**: Não é o objetivo garantir a autenticação, somente a authorizacao. Configuração no docker compose, após, importar o arquivo `realm-export.json` contido na raiz do projeto. Para gerar o token, deve criar um usuario e atribuir as roles contidas no client `quarkus-camel`. A autenticação deve ser efetuada através do `quarkus-camel-frontend`.
 - *Hibernate with Panache, Envers*
 - **Flyway**: Em dev e test o flyway é executado normalmente ao iniciar a aplicação. Em Prd, dentro do cluster k8s é necessario utilizar um `initContainer` e invocar a aplicação passando o parametro `flyway:migrate`.
@@ -29,7 +30,9 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 - *Docker com Native Build*
 - *CI*
 - *CD*
-- Open API
+- *Open API*
+- *HAL Form*
+- *Reactive API* (https://quarkus.io/blog/mutiny-pagination/)
 
 Pendente:
 

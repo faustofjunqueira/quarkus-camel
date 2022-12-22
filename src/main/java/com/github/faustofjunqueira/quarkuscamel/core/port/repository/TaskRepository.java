@@ -1,5 +1,6 @@
 package com.github.faustofjunqueira.quarkuscamel.core.port.repository;
 
+import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.Page;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskCreateDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.model.Task;
@@ -16,7 +17,7 @@ public interface TaskRepository {
 
     Optional<Task> complete(UUID taskId);
 
-    Collection<Task> list(TaskFilterDto filter);
+    Page<Task> list(TaskFilterDto filter);
 
     Optional<Task> getById(UUID taskId);
 }

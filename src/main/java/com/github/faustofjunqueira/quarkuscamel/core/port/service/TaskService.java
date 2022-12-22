@@ -1,6 +1,7 @@
 package com.github.faustofjunqueira.quarkuscamel.core.port.service;
 
 import com.github.faustofjunqueira.quarkuscamel.application.adapter.controller.dto.request.TaskCreateRequest;
+import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.Page;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskCreateDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.model.Task;
@@ -10,7 +11,7 @@ import java.util.UUID;
 
 public interface TaskService {
 
-    Collection<Task> list(TaskFilterDto filter);
+    Page<Task> list(TaskFilterDto filter);
 
     Task create(TaskCreateDto dto, UUID ownerId);
 

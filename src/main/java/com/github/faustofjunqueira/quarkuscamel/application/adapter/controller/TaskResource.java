@@ -1,7 +1,10 @@
 package com.github.faustofjunqueira.quarkuscamel.application.adapter.controller;
 
 import com.github.faustofjunqueira.quarkuscamel.application.adapter.controller.dto.request.TaskCreateRequest;
+import com.github.faustofjunqueira.quarkuscamel.application.adapter.controller.dto.request.TaskFilterRequest;
+import com.github.faustofjunqueira.quarkuscamel.application.adapter.controller.dto.response.PageResponse;
 import com.github.faustofjunqueira.quarkuscamel.application.adapter.controller.dto.response.TaskResponse;
+import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.Paging;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskCreateDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.model.Task;
@@ -10,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.resteasy.reactive.ResponseStatus;
 import org.jboss.resteasy.reactive.RestPath;
-import org.jboss.resteasy.reactive.RestQuery;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.modelmapper.ModelMapper;
 
@@ -21,9 +23,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Path("task")
 @RequiredArgsConstructor
@@ -40,14 +44,13 @@ public class TaskResource {
     @ResponseStatus(RestResponse.StatusCode.OK)
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<TaskResponse> list(
-            @RestQuery String userId
-    ) {
-        var filter = new TaskFilterDto();
-        if (userId != null) {
-            filter.setUserId(userId);
-        }
-        return mapper.map(svc.list(filter), Collection.class);
+    public PageResponse<TaskResponse> list(TaskFilterRequest request) {
+        var filter = mapper.map(request, TaskFilterDto.class);
+        var pagingResult = svc.list(filter);
+        return PageResponse.<TaskResponse>builder()
+                .total(pagingResult.getTotal())
+                .data(pagingResult.getData().stream().map(t -> mapper.map(t, TaskResponse.class)).collect(Collectors.toList()))
+                .build();
     }
 
     @GET

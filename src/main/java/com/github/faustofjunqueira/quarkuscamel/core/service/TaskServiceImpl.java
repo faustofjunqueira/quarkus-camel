@@ -1,5 +1,6 @@
 package com.github.faustofjunqueira.quarkuscamel.core.service;
 
+import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.Page;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskCreateDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.dto.TaskFilterDto;
 import com.github.faustofjunqueira.quarkuscamel.core.domain.error.ModelNotFoundException;
@@ -19,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository repository;
 
-    public Collection<Task> list(@NonNull TaskFilterDto filter) {
+    public Page<Task> list(@NonNull TaskFilterDto filter) {
         return repository.list(filter);
     }
 
